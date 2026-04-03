@@ -28,6 +28,8 @@ const translations = {
         aboutCard3Title: "Payment & Finance",
         aboutCard3Desc: "Set up secure gateways and manage international transactions.",
         videoDesc: "This is not just a book… it's your roadmap to building a successful eCommerce business. Start your journey today.",
+        logoText: "EcomPlaybook",
+        authorName: "Baraa Shaddad",
         learnTitle: "Master the 7 Core Pillars",
         learnSubtitle: "Everything you need to succeed, covered extensively inside.",
         learn1Title: "1. Algorithms",
@@ -84,7 +86,7 @@ const translations = {
         pageTitle: "باقة التجارة الإلكترونية الشاملة",
         heroBadge: "🌟 3 كتب في باقة واحدة",
         heroTitle: "أطلق مشروعك مع باقة التجارة الإلكترونية الشاملة.",
-        heroSubtitle: "الدليل الكامل خطوة بخطوة، بالإضافة إلى كتاب مجانا للمشاريع ودليل أرقام الموردين. لا حاجة لخبرة سابقة.",
+        heroSubtitle: "الدليل الكامل خطوة بخطوة، بالإضافة إلى كتاب مجانا للمشاريع ودليل أرقام الموردين في العلمة. لا حاجة لخبرة سابقة.",
         heroBenefit1: "ابحث عن المنتجات الرابحة والموردين",
         heroBenefit2: "احتراف الخوارزميات والإعلانات الممولة",
         heroBenefit3: "توسع وحماية العلامات التجارية",
@@ -106,6 +108,8 @@ const translations = {
         aboutCard3Title: "الدفع والمالية",
         aboutCard3Desc: "إعداد بوابات الدفع الآمنة وإدارة المعاملات الدولية.",
         videoDesc: "هذا ليس مجرد كتاب... إنه خارطة طريقك لبناء مشروع تجارة إلكترونية ناجح. ابدأ رحلتك اليوم.",
+        logoText: "إيكوم بلايبوك",
+        authorName: "براءة شداد",
         learnTitle: "أتقن 7 محاور أساسية",
         learnSubtitle: "كل ماتحتاجه للنجاح مشروح بالتفصيل في الداخل.",
         learn1Title: "1. فهم الخوارزميات",
@@ -204,13 +208,13 @@ function updateThemeIcons() {
  */
 if (mobileToggleBtn && navLinksContainer) {
     mobileToggleBtn.addEventListener('click', () => {
+        const isActive = navLinksContainer.classList.toggle('active');
         mobileToggleBtn.classList.toggle('active');
-        navLinksContainer.classList.toggle('active');
-        // Toggle close icon visibility
+        
+        // Toggle icons
         const menuIcon = mobileToggleBtn.querySelector('.menu-icon');
         const closeIcon = mobileToggleBtn.querySelector('.close-icon');
         if (menuIcon && closeIcon) {
-            const isActive = mobileToggleBtn.classList.contains('active');
             menuIcon.style.display = isActive ? 'none' : 'inline-block';
             closeIcon.style.display = isActive ? 'inline-block' : 'none';
         }
@@ -318,34 +322,17 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
-
 const animatedElements = document.querySelectorAll('.animate-on-scroll');
 animatedElements.forEach(el => observer.observe(el));
 
 /**
- * Video Player Logic (replace placeholder with YouTube embed)
+ * Navbar Scroll Effect
  */
-const playBtn = document.getElementById('playVideoBtn');
-const videoWrapper = document.getElementById('videoWrapper');
-const placeholder = document.getElementById('videoPlaceholder');
-
-if (playBtn && videoWrapper && placeholder) {
-    playBtn.addEventListener('click', () => {
-        // Replace placeholder with YouTube iframe (example video)
-        const iframe = document.createElement('iframe');
-        iframe.setAttribute('width', '100%');
-        iframe.setAttribute('height', '100%');
-        iframe.setAttribute('src', 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'); // replace with your video ID
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-        iframe.setAttribute('allowfullscreen', 'true');
-        iframe.style.position = 'absolute';
-        iframe.style.top = '0';
-        iframe.style.left = '0';
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        videoWrapper.style.position = 'relative';
-        placeholder.style.display = 'none';
-        videoWrapper.appendChild(iframe);
-    });
-}
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
